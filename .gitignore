@@ -1,3 +1,4 @@
-/home/kjorthar/PTI2/.classpath
-/home/kjorthar/PTI2/.project
-git rm --cached bin
+.classpath
+.project
+.settings
+bin
