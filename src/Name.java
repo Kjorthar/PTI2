@@ -65,13 +65,17 @@ public class Name {
 	}
 	
 	public String getSrc() {
-		String[] tokens = this.d_name.split("/");
-		return tokens[2];
+		String prefix = "/pti2/grupo2/";
+		String noPrefix = this.d_name.substring(this.d_name.indexOf(prefix) + prefix.length());
+		String[] tokens = noPrefix.split("/");
+		return tokens[0];
 	}
 	
 	public String getType() {
-		String[] tokens = this.d_name.split("/");
-		return tokens[3];
+		String prefix = "/pti2/grupo2/";
+		String noPrefix = this.d_name.substring(this.d_name.indexOf(prefix) + prefix.length());
+		String[] tokens = noPrefix.split("/");
+		return tokens[1];
 	}
 	
 	
