@@ -64,6 +64,16 @@ public class Name {
 		this.d_name = this.d_name.concat(s);
 	}
 	
+	public String getSrc() {
+		String[] tokens = this.d_name.split("/");
+		return tokens[2];
+	}
+	
+	public String getType() {
+		String[] tokens = this.d_name.split("/");
+		return tokens[3];
+	}
+	
 	
 	
 	//public static byte NAME_TYPE = 0X07;
@@ -73,9 +83,9 @@ public class Name {
 
 /*NAME COMPOSITION FOR NEWS APP
  *  For interest packets:
- *  / app_name /  /source / category / YYYY / MM / DD / optional -> name.ext / filters
+ *  / app_name / source / category / YYYY / MM / DD / optional -> name.ext / filters
  * 
  *  For data packets:
- *  source / category / YYYY / MM / DD / name.ext / filters
- *  ex: publico / politica / 2018 / 04 / 08 / corrupçao.txt / ps
+ *  / app_name / source / category / YYYY / MM / DD / name.ext / filters
+ *  ex: / pti2 / grupo2 / publico / politica / 2018 / 04 / 08 / corrupçao.txt / ps
  * */
