@@ -18,7 +18,7 @@ public class InterestPacket {
 	
 	public InterestPacket(Name name, int mustBeFresh, int nonce) {
 		super();
-		this.name = name;
+		this.name = new Name(name);
 		this.mustBeFresh = mustBeFresh;
 		this.nonce = nonce;
 	}

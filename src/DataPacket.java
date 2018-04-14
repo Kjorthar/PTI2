@@ -12,13 +12,13 @@ public class DataPacket {
 	
 	
 	public Name name; //Objecto nome proveniente da classe Names
-	public Content content; //Este conteúdo é convertido em bytes já na classe contents.
-	public Signature signature; //Assinatura que também vira de uma classe em que são geradas a chaves e as assinatures.
+	public byte[] content; //Este conteúdo é convertido em bytes já na classe contents.
+	public Sign signature; //Assinatura que também vira de uma classe em que é gerada a assinatura.
 	
 	
-	public DataPacket(Name name, Content content, Signature signature) {
+	public DataPacket(Name name, Content content, Sign signature) {
 		super();
-		this.name = name;
+		this.name = new Name(name);
 		this.content = content;
 		this.signature = signature;
 	}
@@ -44,12 +44,12 @@ public class DataPacket {
 	}
 
 
-	public Signature getSignature() {
-		return singature;
+	public Sign getSignature() {
+		return this.signature;
 	}
 
 
-	public void setSignature(Signature signature) {
+	public void setSignature(Sign signature) {
 		this.signature = signature;
 	}
 
