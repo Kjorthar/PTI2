@@ -12,8 +12,8 @@ import org.ehcache.config.builders.ResourcePoolsBuilder;
 
 public class PIT {
 	//private ArrayList<Cache> caches;
-	private Cache<String, List> PIT;
-	private Cache<String, byte[]> CS;
+	private Cache<byte[], List> PIT;
+	private Cache<byte[], byte[]> CS;
 	private String tester;
 	
 	public PIT() {
@@ -29,11 +29,11 @@ public class PIT {
 		cacheManager.init();
 		//Nao consigo usar ArrayList<String> com o metodo .class, daí usar array de Strings
 		PIT = cacheManager.createCache("PIT",
-				CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, List.class, ResourcePoolsBuilder.heap(100))
+				CacheConfigurationBuilder.newCacheConfigurationBuilder(byte[].class, List.class, ResourcePoolsBuilder.heap(100))
 				.withExpiry(ExpiryPolicyBuilder.timeToIdleExpiration(Duration.ofMinutes(15))));
 		
 		CS = cacheManager.createCache("contentStore",
-				CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, byte[].class, ResourcePoolsBuilder.heap(100))
+				CacheConfigurationBuilder.newCacheConfigurationBuilder(byte[].class, byte[].class, ResourcePoolsBuilder.heap(100))
 				.withExpiry(ExpiryPolicyBuilder.timeToIdleExpiration(Duration.ofMinutes(15))));
 
 		//caches.add(PIT);
@@ -48,23 +48,23 @@ public class PIT {
 		return this.caches;
 	}*/
 	
-	public void insertPIT(String name, String inf) {
+	public void insertPIT(byte[] name, String inf) {
 		//ArrayList<String> aux = new ArrayList<String>(((PIT) PIT).checkPIT(name));
 		ArrayList<String> aux = new ArrayList<String>(PIT.get(name));
 		aux.add(inf);
 		PIT.put(name, aux);
 	}
 	
-	public ArrayList<String> checkPIT(String name) {
+	public ArrayList<String> checkPIT(byte[] name) {
 		ArrayList<String> out = new ArrayList<String>(PIT.get(name));
 		return out;
 	}
 	
-	public void insertCS(String name, byte[] data) {
+	public void insertCS(byte[] name, byte[] data) {
 		CS.put(name, data);
 	}
 	
-	public byte[] checkCS(String name) {
+	public byte[] checkCS(byte[] name) {
 		byte[] out = CS.get(name);
 		return out;
 	}
